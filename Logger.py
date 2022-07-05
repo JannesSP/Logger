@@ -1,3 +1,7 @@
+'''
+print and write logs to stdout, stderr and a logfile.
+'''
+
 import datetime
 import sys
 from io import TextIOWrapper
