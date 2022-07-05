@@ -2,34 +2,46 @@
 
 print and write logs to stdout, stderr and a logfile
 
-## Functions
+# writeLog
 
-callable functions
-
-### writeLog
 
 Write string to logfile if logfilepointer is set.
 
-@param string: String to write to logfile.
+Parameters
+----------
+string : str
+    Message to write to logfile
 
-### error
+# error
 
 Write error string to stderr and logfile if logfilepointer is set.
 Exit program with given error code.
 
-@param string: String to write to stderr and logfile.
-@param error_type: used error_type, default 1.
+Parameters
+----------
+string : str
+    Message to write to stderr and logfile
+error_type : int
+    used error_type, default 1
 
-### warning
+# warning
 
 Write warning string to stderr and logfile if logfilepointer is set.
+        
+Parameters
+----------
+string : str
+    Message to write to stderr and logfile
 
-@param string: String to write to stderr and logfile.
-
-### printLog
+# printLog
 
 Write datetime and string to stdout and logfile if logfilepointer is set.
-
-@param string: String to write to stdout and logfile.
-@param newline_before: Add newline before string, default False.
-@param newline_after: Add newline after string, default True.
+        
+Parameters
+----------
+string : str
+    Message to write to stdout and logfile.
+newline_before : bool
+    Add newline before string, default False.
+newline_after : bool
+    Add newline after string, default True.
