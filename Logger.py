@@ -1,5 +1,11 @@
 '''
 print and write logs to stdout, stderr and a logfile.
+
+Imports
+-------
+datetime
+sys
+TextIOWrapper
 '''
 
 import datetime
