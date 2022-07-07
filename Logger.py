@@ -12,13 +12,31 @@ import datetime
 import sys
 from io import TextIOWrapper
 
+ANSI = {
+    'purple' : '\033[95m',
+    'cyan' : '\033[96m',
+    'darkcyan' : '\033[36m',
+    'blue' : '\033[94m',
+    'green' : '\033[92m',
+    'yellow' : '\033[93m',
+    'red' : '\033[91m',
+    'bold' : '\033[1m',
+    'underline' : '\033[4m',
+    'end' : '\033[0m',
+    'up' : '\033[1A',
+    'clear' : '\033[K',
+    None : ''
+}
+
 class Logger():
     '''
     Logger class to print and write logs to stdout, stderr and a logfile.
     '''
     
-    def __init__(self, logfilepointer: TextIOWrapper = None):
+    def __init__(self, logfilepointer: TextIOWrapper = None, color : str = None):
         self.lp = logfilepointer
+        # fancier output
+        self.color = color
 
     def writeLog(self, string : str, flush : bool = False) -> None:
         '''
@@ -47,7 +65,7 @@ class Logger():
         error_type : int
             used error_type, default 1
         '''
-        sys.stderr.write(f'ERROR: {string}\n')
+        sys.stderr.write(f'{ANSI[self.color]}ERROR: {string}{ANSI["end"]}\n')
         self.writeLog(f'ERROR: {string}\n')
         sys.exit(error_type)
 
@@ -60,7 +78,7 @@ class Logger():
         string : str
             Message to write to stderr and logfile
         '''
-        sys.stderr.write(f'WARNING: {string}\n')
+        sys.stdout.write(f'{ANSI[self.color]}WARNING: {string}{ANSI["end"]}\n')
         self.writeLog(f'WARNING: {string}\n')
 
     def printLog(self, string : str, newline_before : bool = False, newline_after : bool = True) -> None:
@@ -80,7 +98,7 @@ class Logger():
             sys.stdout.write('\n')
             self.writeLog('\n')
             
-        sys.stdout.write(f'{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")} LOG: {string}')
+        sys.stdout.write(f'{ANSI[self.color]}{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")} LOG: {string}{ANSI["end"]}')
         self.writeLog(f'{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")} LOG: {string}')
         
         if newline_after:
